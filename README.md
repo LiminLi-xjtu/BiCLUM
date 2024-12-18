@@ -2,7 +2,7 @@
 
 **BiCLUM** is a method for integrating multi-omics data, including scRNA-seq, scATAC-seq, and CITE-seq datasets. This repository contains code and examples for running BiCLUM on real multi-omics datasets.
 
-![image](https://github.com/LiminLi-xjtu/CoupleVAE/blob/master/img/BiCLUM_arch.pdf)
+![image](https://github.com/LiminLi-xjtu/BiCLUM/blob/master/img/BiCLUM_arch.jpg)
 
     
 ## `Requirements`
