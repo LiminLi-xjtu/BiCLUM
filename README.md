@@ -4,8 +4,6 @@
 
 ![image](https://github.com/LiminLi-xjtu/BiCLUM/blob/master/img/BiCLUM_arch.jpg)
 
-    
-## `Requirements`
 
 ## Requirements
 
