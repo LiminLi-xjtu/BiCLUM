@@ -33,7 +33,7 @@ To run BiCLUM, you need to install the following dependencies:
 You can install the development version of **BiCLUM** via pip directly from GitHub:
 
 ```bash
-pip install git+https://github.com/LiminLi-XJTU/BiCLUM.git
+pip install git+https://github.com/LiminLi-xjtu/BiCLUM.git
 ```
 
 ## Example Usage
