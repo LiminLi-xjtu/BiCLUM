@@ -1,0 +1,24 @@
+dataset_name: Kidney
+dataset_dir: ../data/Kidney/
+GAM_name: ArchR
+dataset_type: RNA_ATAC
+batch: None
+
+n_high_var: 2000
+dim: 100
+neighbors_mnn: 200
+use_rep: hvg_count #[hvg_count, hvg_norm, low_emb]
+latent_dim: 50
+
+tau_cell: 10
+tau_feature: 0.5
+alpha: 1000000
+beta: 10000
+metric: cosine
+
+seed: 123
+batch_size: 256
+learning_rate: 0.0001
+weight_decay: 0.00005
+epoch: 1000
+
