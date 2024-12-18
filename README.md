@@ -38,10 +38,6 @@ pip install git+https://github.com/LiminLi-xjtu/BiCLUM.git
 
 ## Example Usage
 
-The input data for **BiCLUM** should be in the `.h5ad` format. If your data is in a different format, refer to the [Scanpy](https://scanpy.readthedocs.io/en/stable/) or [anndata](https://anndata.readthedocs.io/en/latest/) tutorials for instructions on how to convert your data into the `.h5ad` format.
-
-## Example Usage
-
 The input data for BiCLUM should be in the .h5ad format. If your data is in a different format, refer to the [Scanpy](https://scanpy.readthedocs.io/en/stable/) or [anndata](https://anndata.readthedocs.io/en/stable/) tutorials for instructions on how to convert your data into the .h5ad format.
 
 For scATAC data, the gene activity score matrix can be generated using methods like like [ArchR](https://www.archrproject.com/) or [Signac](https://stuartlab.org/signac/). The transformation code for the scATAC modality in the **PBMC** dataset is available in the `transform` folder.
