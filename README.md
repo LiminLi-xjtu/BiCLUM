@@ -52,19 +52,49 @@ You can access these datasets on [Zenodo](https://zenodo.org/uploads/14506611).
 
 The configuration file contains the parameter settings and data information for different datasets. You can find it in the `config/` folder. The settings include important hyperparameters such as learning rates, batch sizes, and specific model parameters tailored for each dataset, as well as the paths to the input datasets. You can modify these settings according to your requirements.
 
-Example:
+Example parameter settings in the config file:
 
 ```bash
-# Example parameter settings in the config file
-dataset_name: PBMC
-dataset_dir: ../data/PBMC
-GAM_name: ArchR
-dataset_type: RNA_ATAC
-batch: None
-paired: True
+# Dataset and transformation settings
+dataset_name: PBMC  # Name of the dataset (e.g., PBMC). Specify which dataset you are working with.
+dataset_dir: ../data/PBMC  # Path to the PBMC data directory. This directory should include files like rna.h5ad, atac.h5ad, and scGAM_ArchR.h5ad.
+                          # These datasets can be downloaded from [Zenodo](https://zenodo.org/uploads/14506611).
+GAM_name: ArchR  # Transformation method used to convert the ATAC-seq data (atac.h5ad) into a gene activity score matrix.
+                 # Options could include 'ArchR' or 'Signac', depending on your preprocessing method.
+dataset_type: RNA_ATAC  # Type of data integration. This defines which modalities you are integrating. 
+                       # Options could be:
+                       # - 'RNA_ATAC' for RNA and ATAC-seq integration
+                       # - 'RNA_Protein' for RNA and Protein integration
+batch: None  # Batch information for BMCITE (CITE-seq) data. If no batch information is available, set this parameter to None.
+paired: True  # Whether the data is paired (True/False). 'True' if the data are from paired modalities (e.g., scRNA-seq and scATAC-seq), 
+              # 'False' otherwise (e.g., unpaired datasets).
 
-batch_size: 256
-learning_rate: 0.0001
+# Model hyperparameters
+n_high_var: 2000  # The number of highly variable genes (HVGs) selected for preprocessing. 
+dim: 100  # The dimensionality of PCA embeddings in the preprocessing step. It reduces the number of features while retaining variance.
+neighbors_mnn: 500  # The number of nearest neighbors used for Mutual Nearest Neighbor (MNN) construction. 
+metric: cosine  # The distance metric to use for MNN construction. 
+                # You can also choose other distance metrics like 'euclidean' depending on the nature of your data.
+use_rep: hvg_count  # The representation used for gene features. Options include:
+                   # - 'hvg_count' for using raw counts of high-variance genes
+                   # - 'hvg_norm' for using normalized data
+                   # - 'low_emb' for using low-dimensional embeddings from previous steps as feature representations.
+
+latent_dim: 50  # The dimensionality of the latent space for the model. 
+
+# Regularization parameters
+tau_cell: 0.5  # Hyperparameter for the cell-level contrastive loss function. 
+tau_feature: 50  # Hyperparameter for the feature-level contrastive loss function.
+alpha: 1000000  # The weight for cell-level regularization. 
+beta: 10000  # The weight for feature-level regularization. 
+
+# Training settings
+seed: 123  # The random seed for reproducibility
+batch_size: 256  # The batch size for training
+learning_rate: 0.0001  # The learning rate for optimization
+weight_decay: 0.00005  # The weight decay (L2 regularization) applied to model parameters to prevent overfitting and encourage simpler models.
+epoch: 1000  # The number of training epochs
+
 ```
 
 ### Running BiCLUM
