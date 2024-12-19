@@ -6,7 +6,7 @@
 
 ## System Requirements
 
-BiCLUM is implemented in **Python 3.8.19** and requires **GPU** support for optimal performance. All results presented in the paper were obtained using an **NVIDIA GeForce RTX 3090** GPU.
+BiCLUM is implemented in **Python 3.8.19**. All results presented in the paper were obtained using an **NVIDIA GeForce RTX 3090** GPU.
 
 
 ## Requirements
