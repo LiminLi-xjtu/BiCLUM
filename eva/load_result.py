@@ -52,11 +52,6 @@ def load_result_raw(dataset_name, dataset_dir, result_dir, methods_raw):
                 except:
                     emb = np.array(result.X.todense())
             adata.obsm[method] = emb
-        elif method == 'BiCLUM':
-            method_gam = method + '_Signac'
-            result = np.load(os.path.join(result_dir, 'BiCLUM/BiCLUM_Signac.npy'), allow_pickle=True).item()
-            adata.obsm[method_gam] = np.vstack((result['inte'][1], result['inte'][0]))
-
         else:
             result = np.load(os.path.join(result_dir, method + ".npy"), allow_pickle=True).item()
             adata.obsm[method] = np.vstack((result['inte'][0], result['inte'][1]))  # rna, other
@@ -113,44 +108,8 @@ def load_result_gasm(dataset_name, dataset_dir, result_dir, GAM_name, methods_ga
 
         elif method == 'BiCLUM':
             method_gam = method # + '_' + GAM_name
-            result = np.load(os.path.join(result_dir, 'BiCLUM/BiCLUM_' + GAM_name + '.npy'), allow_pickle=True).item()
-            adata.obsm[method_gam] = np.vstack((result['inte'][1], result['inte'][0]))
-
-    return adata, anno_rna, anno_other
-
-
-def load_result_my(dataset_name, dataset_dir, result_dir, GAM_name, batch):
-    if batch is None:
-        RNA_data = anndata.read(os.path.join(dataset_dir, 'processed_data/' + dataset_name + '/' + GAM_name + "-rna-pp.h5ad"))
-        Other_data = anndata.read(os.path.join(dataset_dir, 'processed_data/' + dataset_name + '/' + GAM_name + "-gam-pp.h5ad"))
-        Other_data.obs['omic_id'] = 'Other'
-        RNA_data.obs['omic_id'] = 'RNA'
-        anno_other = Other_data.obs['cell_type']
-        anno_rna = RNA_data.obs['cell_type']
-        clu_rna, clu_other = load_clusters(anno_other, anno_rna)
-        num_other, num_rna = len(clu_other), len(clu_rna)
-    else:
-        RNA_data = anndata.read(os.path.join(dataset_dir, '15-bmcite/GASM/bm.rna.' + batch + '.h5ad'))
-        Other_data = anndata.read(os.path.join(dataset_dir, '15-bmcite/GASM/bm.adt.' + batch + '.h5ad'))
-        Other_data.obs['omic_id'] = 'Other'
-        RNA_data.obs['omic_id'] = 'RNA'
-        anno_other = Other_data.obs['cell_type2']
-        anno_rna = RNA_data.obs['cell_type2']
-        clu_rna, clu_other = load_clusters(anno_other, anno_rna)
-        num_other, num_rna = len(clu_other), len(clu_rna)
-
-
-
-    adata = anndata.concat([RNA_data, Other_data], join='outer')
-    adata.obsm = {}
-    adata.obs['cell_type'] = np.concatenate((anno_rna, anno_other), axis = 0)
-    adata.obs['cluster'] = np.concatenate((clu_rna, clu_other), axis=0)
-    adata.obs['omic_id'] = np.concatenate((RNA_data.obs['omic_id'], Other_data.obs['omic_id']), axis=0)
-
-    for f in os.listdir(os.path.join(result_dir, 'BiCLUM_v2_50_m')):
-        method_gam = 'BiCLUM_' + f.split('.')[0]
-        result = np.load(os.path.join(result_dir, 'BiCLUM_v2_50_m/' + f.split('.')[0] + '.npy'), allow_pickle=True).item()
-        adata.obsm[method_gam] = np.vstack((result['inte_cell'][1], result['inte_cell'][0]))
+            result = np.load(os.path.join(result_dir, GAM_name + '.npy'), allow_pickle=True).item()
+            adata.obsm[method_gam] = np.vstack((result['inte_cell'][1], result['inte_cell'][0]))
 
     return adata, anno_rna, anno_other
 
@@ -158,8 +117,8 @@ def load_result_my(dataset_name, dataset_dir, result_dir, GAM_name, batch):
 
 def load_cite(dataset_name, dataset_dir, result_dir, methods, batch):
 
-    RNA_data = anndata.read(os.path.join(dataset_dir, '15-bmcite/GASM/bm.rna.' + batch + '.h5ad'))
-    Other_data = anndata.read(os.path.join(dataset_dir, '15-bmcite/GASM/bm.adt.' + batch + '.h5ad'))
+    RNA_data = anndata.read(os.path.join(dataset_dir, dataset_name + '/bm.rna.' + batch + '.h5ad'))
+    Other_data = anndata.read(os.path.join(dataset_dir, dataset_name + '/bm.adt.' + batch + '.h5ad'))
     Other_data.obs['omic_id'] = 'Other'
     RNA_data.obs['omic_id'] = 'RNA'
     anno_rna, anno_other = RNA_data.obs['cell_type2'], Other_data.obs['cell_type2']
@@ -181,9 +140,8 @@ def load_cite(dataset_name, dataset_dir, result_dir, methods, batch):
                 adata.obsm[method] = np.vstack((RNA_data.obsm['X_pca'], Other_data.obsm['X_apca']))
 
         elif method == 'bindSC':
-            for j in range(len(cross_type)):
-                result = anndata.read_h5ad(os.path.join(result_dir, "bindSC.h5ad"))
-                adata.obsm[method] = np.array(result.X.todense())
+            result = anndata.read_h5ad(os.path.join(result_dir, "bindSC.h5ad"))
+            adata.obsm[method] = np.array(result.X.todense())
 
         elif method == 'LIGER':
             result = anndata.read_h5ad(os.path.join(result_dir, "LIGER.h5ad"))
@@ -204,7 +162,7 @@ def load_cite(dataset_name, dataset_dir, result_dir, methods, batch):
                 adata.obsm[method] = np.vstack((emb[num_other:, :], emb[0:num_other, :]))
 
         elif method == 'BiCLUM':
-            result = np.load(os.path.join(result_dir, 'BiCLUM.npy'), allow_pickle=True).item()
+            result = np.load(os.path.join(result_dir, batch + '.npy'), allow_pickle=True).item()
             adata.obsm[method] = np.vstack((result['inte_cell'][1], result['inte_cell'][0]))
 
         else:
