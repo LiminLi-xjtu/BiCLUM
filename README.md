@@ -48,6 +48,24 @@ For scATAC data, the gene activity score matrix can be generated using methods l
 
 You can access these datasets on [Zenodo](https://zenodo.org/uploads/14506611).
 
+### Configuration
+
+The configuration file contains the parameter settings and data information for different datasets. You can find it in the `config/` folder. The settings include important hyperparameters such as learning rates, batch sizes, and specific model parameters tailored for each dataset. You can modify these settings according to your requirements.
+
+Example:
+
+```bash
+# Example parameter settings in the config file
+dataset_name: PBMC
+dataset_dir: ../data/PBMC
+GAM_name: ArchR
+dataset_type: RNA_ATAC
+batch: None
+paired: True
+
+batch_size: 256
+learning_rate: 0.0001
+```
 
 ### Running BiCLUM
 
