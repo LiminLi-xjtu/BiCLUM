@@ -4,6 +4,10 @@
 
 ![image](https://github.com/LiminLi-xjtu/BiCLUM/blob/master/img/BiCLUM_arch.jpg)
 
+## System Requirements
+
+BiCLUM is implemented in **Python 3.8.19** and requires **GPU** support for optimal performance. All results presented in the paper were obtained using an **NVIDIA GeForce RTX 3090** GPU.
+
 
 ## Requirements
 
@@ -28,13 +32,6 @@ To run BiCLUM, you need to install the following dependencies:
 - `torch==2.3.0`
 - `tqdm==4.66.5`
 
-## Installation
-
-You can install the development version of **BiCLUM** via pip directly from GitHub:
-
-```bash
-pip install git+https://github.com/LiminLi-xjtu/BiCLUM.git
-```
 
 ## Example Usage
 
