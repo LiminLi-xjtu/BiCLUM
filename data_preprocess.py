@@ -119,10 +119,10 @@ def data_input(args):
     print(f"preprocess RNA and Other data")
     if args.dataset_type == 'RNA_ATAC':
         processing(other, rna, args.dataset_name, args.GAM_name)
-        # RNA_data = ad.read_h5ad(
-        #     os.path.join('../data/processed_data/', args.dataset_name + '/' + args.GAM_name + "-rna-pp.h5ad"))
-        # Other_data = ad.read_h5ad(
-        #     os.path.join('../data/processed_data/', args.dataset_name + '/' + args.GAM_name + "-gam-pp.h5ad"))
+        RNA_data = anndata.read_h5ad(
+            os.path.join('../data/processed_data/', args.dataset_name + '/' + args.GAM_name + "-rna-pp.h5ad"))
+        Other_data = anndata.read_h5ad(
+            os.path.join('../data/processed_data/', args.dataset_name + '/' + args.GAM_name + "-gam-pp.h5ad"))
     else:
         RNA_data = rna
         Other_data = other
