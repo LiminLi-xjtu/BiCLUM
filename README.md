@@ -54,32 +54,49 @@ You can access these datasets on [Zenodo](https://zenodo.org/uploads/14506611).
 
 ### Running BiCLUM
 
-To run **BiCLUM** on different types of multi-omics data, use the following commands:
+To run **BiCLUM** for multi-omics data integration, follow these steps depending on the type of datasets you are working with.
 
-#### For scRNA and scATAC integration:
+#### 1. For scRNA and scATAC Integration, use the following command:
 
 ```bash
 python Run_RNA_ATAC.py dataset_name
 ```
 
-For example, to run the **Kidney** dataset:
+Where `dataset_name` is the name of your dataset (e.g., **PBMC**, **Kidney**, etc.).
+
+**Example**: To run the **PBMC** dataset (scRNA-seq and scATAC-seq):
 
 ```bash
-python Run_RNA_ATAC.py Kidney
+python Run_RNA_ATAC.py PBMC
 ```
 
-#### For scRNA and Protein integration (CITE-seq):
+#### 2. **For scRNA and Protein Integration (CITE-seq)**:
 
 ```bash
 python Run_BMCITE.py dataset_name
 ```
 
-For example, to run the **BMCITE_s1d1_s1d2** dataset:
+**Example**: To run the **BMCITE_s1d1_s1d2** dataset (scRNA-seq and Protein):
 
 ```bash
 python Run_BMCITE.py BMCITE_s1d1_s1d2
 ```
 
 
+### Visualizing the Results
 
+Use the following command to visualize the results:
 
+#### 1. **For scRNA and scATAC Integration**:
+
+```bash
+python Vis_RNA_ATAC.py dataset_name
+```
+
+#### 2. **For scRNA and Protein Integration (CITE-seq)**:
+
+```bash
+python Vis_BMCITE.py dataset_name
+```
+
+Replace `dataset_name` with the name of the datasets (e.g., **PBMC**, **BMCITE_s1d1_s1d2**).
