@@ -8,6 +8,7 @@ paired: True
 n_high_var: 2000
 dim: 100
 neighbors_mnn: 500
+metric: cosine
 use_rep: hvg_count #[hvg_count, hvg_norm, low_emb]
 latent_dim: 50
 
@@ -15,7 +16,7 @@ tau_cell: 0.5
 tau_feature: 50
 alpha: 1000000
 beta: 10000
-metric: cosine
+
 
 seed: 123
 batch_size: 256
