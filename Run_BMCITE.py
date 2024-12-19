@@ -9,10 +9,12 @@ import sys
 from util import load_config, EarlyStopping
 from data_preprocess import data_input
 from model import Model
+from eva.evaluation import *
+from eva.load_result import *
 
 
-batch = sys.argv[1]
-config_args = load_config('./config/BMCITE_' + batch)
+dataset_name = sys.argv[1]
+config_args = load_config('./config/' + dataset_name)
 args = argparse.Namespace(**config_args)
 
 
@@ -50,10 +52,23 @@ if __name__ == "__main__":
 
     eva = dict({"inte_cell": encoded_cell_list, "inte_fea": encoded_fea_list, 'loss_list': model.loss_list})
 
-    path = './result/' + args.dataset_name + '/'
+    path = './results/' + args.dataset_name + '/'
 
     if not os.path.exists(path):
         os.makedirs(path)
 
-    np.save(os.path.join(path, args.GAM_name + '.npy'), eva)
+    np.save(os.path.join(path, args.batch + '.npy'), eva)
 
+    ###############################Calculate quantitative metrics#################################################
+
+    dataset_dir = "../data/"
+    result_dir = "./results/" + args.dataset_name
+    eva_dir = "./eva/" + args.dataset_name
+
+    if not os.path.exists(eva_dir):
+        os.makedirs(eva_dir)
+
+    adata, anno_rna, anno_other = load_cite(dataset_name, dataset_dir, result_dir, ['BiCLUM'], args.batch)
+    eva_metrics = evaluate(adata, anno_rna, anno_other, eva_dir, args.batch, args.paired)
+
+    print(eva_metrics)

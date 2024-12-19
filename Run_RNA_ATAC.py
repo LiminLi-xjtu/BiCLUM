@@ -9,6 +9,8 @@ import sys
 from util import load_config, EarlyStopping
 from data_preprocess import data_input
 from model import Model
+from eva.evaluation import *
+from eva.load_result import *
 
 dataset_name = sys.argv[1]
 config_args = load_config('./config/' + dataset_name)
@@ -47,10 +49,25 @@ if __name__ == "__main__":
 
     eva = dict({"inte_cell": encoded_cell_list, "inte_fea": encoded_fea_list, 'loss_list': model.loss_list})
 
-    path = './result/' + args.dataset_name + '/'
+    path = './results/' + args.dataset_name + '/'
 
     if not os.path.exists(path):
         os.makedirs(path)
 
     np.save(os.path.join(path, args.GAM_name + '.npy'), eva)
+
+    ###############################Calculate quantitative metrics#################################################
+
+    dataset_dir = "../data/"
+    result_dir = "./results/" + args.dataset_name
+    eva_dir = "./eva/" + args.dataset_name
+
+    if not os.path.exists(eva_dir):
+        os.makedirs(eva_dir)
+
+    adata, anno_rna, anno_other = load_result_gasm(dataset_name, dataset_dir, result_dir, args.GAM_name,
+                                                   ['BiCLUM'])
+    eva_metrics = evaluate(adata, anno_rna, anno_other, eva_dir, args.GAM_name, args.paired)
+
+    print(eva_metrics)
 
