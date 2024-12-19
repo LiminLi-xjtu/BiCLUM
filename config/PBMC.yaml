@@ -1,8 +1,9 @@
-dataset_name: PBMC2
-dataset_dir: ../data/PBMC2
+dataset_name: PBMC
+dataset_dir: ../data/PBMC
 GAM_name: ArchR
 dataset_type: RNA_ATAC
 batch: None
+paired: True
 
 n_high_var: 2000
 dim: 100

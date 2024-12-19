@@ -3,6 +3,7 @@ dataset_dir: ../data/BMMC_s1d1/
 GAM_name: Signac
 dataset_type: RNA_ATAC
 batch: None
+paired: True
 
 n_high_var: 2000
 dim: 100

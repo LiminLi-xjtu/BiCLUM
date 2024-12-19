@@ -3,6 +3,7 @@ dataset_dir: ../data/Kidney/
 GAM_name: ArchR
 dataset_type: RNA_ATAC
 batch: None
+paired: False
 
 n_high_var: 2000
 dim: 100

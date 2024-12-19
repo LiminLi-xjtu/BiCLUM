@@ -3,6 +3,7 @@ dataset_dir: ../data/BMCITE_s1d2_s3d7/
 GAM_name: None
 dataset_type: RNA_Protein
 batch: s1d2_s3d7
+paired: True
 
 
 n_high_var: 2000
