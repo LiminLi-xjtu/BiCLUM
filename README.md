@@ -50,7 +50,7 @@ You can access these datasets on [Zenodo](https://zenodo.org/uploads/14506611).
 
 ### Configuration
 
-The configuration file contains the parameter settings and data information for different datasets. You can find it in the `config/` folder. The settings include important hyperparameters such as learning rates, batch sizes, and specific model parameters tailored for each dataset. You can modify these settings according to your requirements.
+The configuration file contains the parameter settings and data information for different datasets. You can find it in the `config/` folder. The settings include important hyperparameters such as learning rates, batch sizes, and specific model parameters tailored for each dataset, as well as the paths to the input datasets. You can modify these settings according to your requirements.
 
 Example:
 
