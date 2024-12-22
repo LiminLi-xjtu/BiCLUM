@@ -109,7 +109,9 @@ epoch: 1000  # The number of training epochs
 
 To run **BiCLUM** for multi-omics data integration, follow these steps depending on the type of datasets you are working with.
 
-#### 1. For scRNA and scATAC Integration, use the following command:
+#### 1. **For scRNA and scATAC Integration:**
+
+To integrate **scRNA-seq** and **scATAC-seq** data, use the following command:
 
 ```bash
 python Run_RNA_ATAC.py dataset_name
@@ -123,7 +125,9 @@ Where `dataset_name` is the name of your dataset (e.g., **PBMC**, **Kidney**, et
 python Run_RNA_ATAC.py PBMC
 ```
 
-#### 2. **For scRNA and Protein Integration (CITE-seq)**:
+#### 2. **For scRNA and Protein Integration (CITE-seq):**
+
+To integrate **scRNA-seq** and **protein** data (CITE-seq), use the following command:
 
 ```bash
 python Run_BMCITE.py dataset_name
@@ -135,21 +139,38 @@ python Run_BMCITE.py dataset_name
 python Run_BMCITE.py BMCITE_s1d1_s1d2
 ```
 
+### Outputs
+
+After running the commands above, the following outputs will be generated:
+
+1. **Model Outputs**: The parameter file after model training is saved in the `output/` folder.
+2. **Embeddings and Losses**: The cell embeddings (`inte_cell`) and feature embeddings (`inte_fea`) for multimodal data, along with the model's loss list (`loss_list`), are saved in the `results/` folder.
+3. **Model Evaluation**: The indicators for evaluating model performance, including **omics mixing**, **cell type preservation**, **transfer accuracy**, and **FOSCTTM**, are saved in the `eva/` folder.
 
 ### Visualizing the Results
 
-Use the following command to visualize the results:
+Once the model is trained and the embeddings are saved, you can visualize the results with the following commands:
 
-#### 1. **For scRNA and scATAC Integration**:
+#### 1. **For scRNA and scATAC Integration:**
 
 ```bash
 python Vis_RNA_ATAC.py dataset_name
 ```
 
-#### 2. **For scRNA and Protein Integration (CITE-seq)**:
+#### 2. **For scRNA and Protein Integration (CITE-seq):**
 
 ```bash
 python Vis_BMCITE.py dataset_name
 ```
 
-Replace `dataset_name` with the name of the datasets (e.g., **PBMC**, **BMCITE_s1d1_s1d2**).
+Replace `dataset_name` with the name of your dataset (e.g., **PBMC**, **BMCITE_s1d1_s1d2**).
+
+The visualization results, including plots such as UMAP or PAGA graph, are saved in the `vis/` folder.
+
+---
+
+### Notes:
+- **output folder**: Contains the model parameters after training.
+- **results folder**: Stores the embeddings of cells and features, as well as the loss list.
+- **eva folder**: Includes model performance indicators for evaluating the success of the integration.
+- **vis folder**: Holds the generated visualizations from the trained model.
