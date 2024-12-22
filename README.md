@@ -48,11 +48,11 @@ For scATAC data, the gene activity score matrix can be generated using methods l
 
 #### Data Sources
 
-- The **BMMC** and **BMCITE** datasets (including `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`) were downloaded from the **Gene Expression Omnibus (GEO)** repository (accession number: [GSE194122](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122)).
-  
+- The **BMMC** and **BMCITE** datasets (including `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`) were obtained from the work of [Luecken, Malte D., et al.](https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/158f3069a435b314a80bdcb024f8e422-Abstract-round2.html) and downloaded from the **Gene Expression Omnibus (GEO)** repository (accession number: [GSE194122](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122)).
+
 - The **PBMC** dataset was obtained from **10x Genomics** ([PBMC dataset link](https://www.10xgenomics.com/resources/datasets/pbmc-from-a-healthy-donor-granulocytes-removed-through-cell-sorting-3-k-1-standard-2-0-0)).
-  
-- The **Kidney** dataset was retrieved from the **GEO** repository (accession number: [GSE151302](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151302)).
+
+- The **Kidney** dataset was obtained from the work of [Muto, Yoshiharu, et al.](https://www.nature.com/articles/s41467-021-22368-w) and retrieved from the **GEO** repository (accession number: [GSE151302](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151302)).
 
 You can access these multi-omics datasets and their corresponding gene activity score matrices on [Zenodo](https://zenodo.org/uploads/14506611).
 
