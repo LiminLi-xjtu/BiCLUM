@@ -42,11 +42,19 @@ For scATAC data, the gene activity score matrix can be generated using methods l
 
 ### Datasets
 
-- **BMMC_s1d1** and **PBMC**: Paired multi-omics data (scRNA-seq and scATAC-seq).
-- **Kidney**: Unpaired dataset (snRNA-seq and snATAC-seq).
-- **BMCITE**: CITE-seq dataset (scRNA-seq and protein modalities), processed into two batches: `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`.
+- **BMMC_s1d1** and **PBMC**: Paired multi-omics data consisting of **scRNA-seq** and **scATAC-seq**.
+- **Kidney**: Unpaired dataset combining **snRNA-seq** and **snATAC-seq** data.
+- **BMCITE**: CITE-seq dataset with **scRNA-seq** and **protein modalities**, processed into two batches: `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`.
 
-You can access these datasets on [Zenodo](https://zenodo.org/uploads/14506611).
+#### Data Sources
+
+- The **BMMC** and **BMCITE** datasets (including `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`) were downloaded from the **Gene Expression Omnibus (GEO)** repository (accession number: [GSE194122](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122)).
+  
+- The **PBMC** dataset was obtained from **10x Genomics** ([PBMC dataset link](https://www.10xgenomics.com/resources/datasets/pbmc-from-a-healthy-donor-granulocytes-removed-through-cell-sorting-3-k-1-standard-2-0-0)).
+  
+- The **Kidney** dataset was retrieved from the **GEO** repository (accession number: [GSE151302](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151302)).
+
+You can access these multi-omics datasets and their corresponding gene activity score matrices on [Zenodo](https://zenodo.org/uploads/14506611).
 
 ### Configuration
 
