@@ -163,7 +163,7 @@ python Vis_BMCITE.py dataset_name
 
 Replace `dataset_name` with the name of your dataset (e.g., **PBMC**, **BMCITE_s1d1_s1d2**).
 
-The visualization results, including plots such as UMAP or PAGA graph, are saved in the `vis/` folder.
+The visualization results, including plots such as UMAP or PAGA graph, are saved in the `vis/dataset_name/` folder.
 
 ---
 
