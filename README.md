@@ -141,11 +141,9 @@ python Run_BMCITE.py BMCITE_s1d1_s1d2
 
 ### Outputs
 
-After running the commands above, the following outputs will be generated:
-
-1. **Model Outputs**: The parameter file after model training is saved in the `output/` folder.
-2. **Embeddings and Losses**: The cell embeddings (`inte_cell`) and feature embeddings (`inte_fea`) for multimodal data, along with the model's loss list (`loss_list`), are saved in the `results/` folder.
-3. **Model Evaluation**: The indicators for evaluating model performance, including **omics mixing**, **cell type preservation**, **transfer accuracy**, and **FOSCTTM**, are saved in the `eva/` folder.
+1. **Model Outputs**: The parameter file after model training is saved in the `output/dataset_name/` folder.
+2. **Embeddings and Losses**: The cell embeddings (`inte_cell`) and feature embeddings (`inte_fea`) for multimodal data, along with the model's loss list (`loss_list`), are saved in the `./results/dataset_name/GAM_name.npy` file.
+3. **Model Evaluation**: The indicators for evaluating model performance, including **omics mixing**, **cell type preservation**, **transfer accuracy**, and **FOSCTTM**, are saved in the `eva/dataset_name/eva_GAM_name.csv` file. 
 
 ### Visualizing the Results
 
