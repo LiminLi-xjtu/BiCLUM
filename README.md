@@ -42,7 +42,8 @@ For scATAC data, the gene activity score matrix can be generated using methods l
 
 ### Datasets
 
-- **BMMC_s1d1** and **PBMC**: Paired multi-omics data consisting of **scRNA-seq** and **scATAC-seq**.
+- **BMMC (paired)** and **PBMC (paired)**: Paired multi-omics data consisting of **scRNA-seq** and **scATAC-seq**.
+- **BMMC (unpaired)** and **PBMC (unpaired)**: Unpaired multi-omics data consisting of **scRNA-seq** and **scATAC-seq**.
 - **Kidney**: Unpaired dataset combining **snRNA-seq** and **snATAC-seq** data.
 - **BMCITE**: CITE-seq dataset with **scRNA-seq** and **protein modalities**, processed into two batches: `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`.
 
