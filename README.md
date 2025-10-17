@@ -50,7 +50,8 @@ For scATAC data, the gene activity score matrix can be generated using methods l
 
 - The **BMMC** and **BMCITE** datasets (including `BMCITE_s1d1_s1d2` and `BMCITE_s1d2_s3d7`) were obtained from the work of [Luecken, Malte D., et al.](https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/158f3069a435b314a80bdcb024f8e422-Abstract-round2.html) and downloaded from the **Gene Expression Omnibus (GEO)** repository (accession number: [GSE194122](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122)).
 
-- The **PBMC** dataset was obtained from **10x Genomics** ([PBMC dataset link](https://www.10xgenomics.com/resources/datasets/pbmc-from-a-healthy-donor-granulocytes-removed-through-cell-sorting-3-k-1-standard-2-0-0)).
+- The **PBMC (paired)** dataset was obtained from **10x Genomics** ([PBMC (paired) dataset link](https://www.10xgenomics.com/resources/datasets/pbmc-from-a-healthy-donor-granulocytes-removed-through-cell-sorting-3-k-1-standard-2-0-0)).
+- The **PBMC (unpaired)** dataset was obtained from the work of [Wang C, et al.](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02116-x) and downloaded from ([PBMC (unpaied) dataset link](https://github.com/liulab-dfci/MAESTRO/tree/master/data)).
 
 - The **Kidney** dataset was obtained from the work of [Muto, Yoshiharu, et al.](https://www.nature.com/articles/s41467-021-22368-w) and retrieved from the **GEO** repository (accession number: [GSE151302](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151302)).
 
@@ -64,8 +65,8 @@ Example parameter settings in the config file:
 
 ```bash
 # Dataset and transformation settings
-dataset_name: PBMC  # Name of the dataset (e.g., PBMC). Specify which dataset you are working with.
-dataset_dir: ../data/PBMC  # Path to the PBMC data directory. This directory should include files like rna.h5ad, atac.h5ad, and scGAM_ArchR.h5ad.
+dataset_name: BMMC_paired  # Name of the dataset (e.g., BMMC (paired)). Specify which dataset you are working with.
+dataset_dir: ../data/BMMC_paired  # Path to the BMMC (paired) data directory. This directory should include files like rna.h5ad, atac.h5ad, and scGAM_ArchR.h5ad.
                           # These datasets can be downloaded from [Zenodo](https://zenodo.org/uploads/14506611).
 GAM_name: ArchR  # Transformation method used to convert the ATAC-seq data (atac.h5ad) into a gene activity score matrix.
                  # Options could include 'ArchR' or 'Signac', depending on your preprocessing method.
@@ -91,16 +92,18 @@ use_rep: hvg_count  # The representation used for gene features. Options include
 latent_dim: 50  # The dimensionality of the latent space for the model. 
 
 # Regularization parameters
-tau_cell: 0.5  # Hyperparameter for the cell-level contrastive loss function. 
-tau_feature: 50  # Hyperparameter for the feature-level contrastive loss function.
-alpha: 1000000  # The weight for cell-level regularization. 
-beta: 10000  # The weight for feature-level regularization. 
+tau_cell: 0.5  # Hyperparameter for the cell-level contrastive loss function, default is 0.5. 
+tau_feature: 0.5  # Hyperparameter for the feature-level contrastive loss function, default is 0.5.
+gamma_a: 1 # The weight for modality 1 reconstruction regularization, default is 1.
+gamma_b: 1 # The weight for modality 2 reconstruction regularization, default is 1.
+alpha: 10000  # The weight for cell-level regularization, default is 10000. 
+beta: 10000  # The weight for feature-level regularization, default is 10000. 
 
 # Training settings
 seed: 123  # The random seed for reproducibility
 batch_size: 256  # The batch size for training
-learning_rate: 0.0001  # The learning rate for optimization
-weight_decay: 0.00005  # The weight decay (L2 regularization) applied to model parameters to prevent overfitting and encourage simpler models.
+learning_rate: 0.0001  # The learning rate for optimization, default is 0.0001
+weight_decay: 0.00005  # The weight decay (L2 regularization) applied to model parameters to prevent overfitting and encourage simpler models, deafult is 0.00005.
 epoch: 1000  # The number of training epochs
 
 ```
@@ -117,9 +120,9 @@ To integrate **scRNA-seq** and **scATAC-seq** data, use the following command:
 python Run_RNA_ATAC.py dataset_name
 ```
 
-Where `dataset_name` is the name of your dataset (e.g., **PBMC**, **Kidney**, etc.).
+Where `dataset_name` is the name of your dataset (e.g., **PBMC_paired**, **Kidney**, etc.).
 
-**Example**: To run the **PBMC** dataset (scRNA-seq and scATAC-seq):
+**Example**: To run the **PBMC_paired** dataset (scRNA-seq and scATAC-seq):
 
 ```bash
 python Run_RNA_ATAC.py PBMC
@@ -161,7 +164,7 @@ python Vis_RNA_ATAC.py dataset_name
 python Vis_BMCITE.py dataset_name
 ```
 
-Replace `dataset_name` with the name of your dataset (e.g., **PBMC**, **BMCITE_s1d1_s1d2**).
+Replace `dataset_name` with the name of your dataset (e.g., **PBMC_paired**, **BMCITE_s1d1_s1d2**).
 
 The visualization results, including plots such as UMAP or PAGA graph, are saved in the `vis/dataset_name/` folder.
 
