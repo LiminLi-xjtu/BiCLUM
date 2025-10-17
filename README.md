@@ -125,7 +125,7 @@ Where `dataset_name` is the name of your dataset (e.g., **PBMC_paired**, **Kidne
 **Example**: To run the **PBMC_paired** dataset (scRNA-seq and scATAC-seq):
 
 ```bash
-python Run_RNA_ATAC.py PBMC
+python Run_RNA_ATAC.py PBMC_paired
 ```
 
 #### 2. **For scRNA and Protein Integration (CITE-seq):**
