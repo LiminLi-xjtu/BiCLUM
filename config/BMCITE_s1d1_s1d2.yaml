@@ -1,5 +1,5 @@
 dataset_name: BMCITE_s1d1_s1d2
-dataset_dir: ../data/BMCITE_s1d1_s1d2/
+dataset_dir: ../../data/BMCITE_s1d1_s1d2/
 GAM_name: None
 dataset_type: RNA_Protein
 batch: s1d1_s1d2
@@ -9,15 +9,16 @@ paired: True
 n_high_var: 2000
 dim: 100
 neighbors_mnn: 500
-metric: cosine
-use_rep: hvg_norm #[hvg_count, hvg_norm, low_emb]
+use_rep: hvg_norm 
 latent_dim: 25
 
 tau_cell: 100
 tau_feature: 50
 alpha: 100
 beta: 100000
-
+gamma_a: 1
+gamma_b: 1
+metric: cosine
 
 seed: 123
 batch_size: 256
