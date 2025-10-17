@@ -103,8 +103,9 @@ class Model(torch.nn.Module):
             cell_r.append(self.dec_c(cell_z[k], feature_z[k], k))
 
         loss_rec_cell = 0
-        for k in range(len(feature_z)):
-            loss_rec_cell += F.mse_loss(cell_r[k], cell_dec[k])
+
+        loss_rec_cell += args.gamma_a * F.mse_loss(cell_r[0], cell_dec[0])
+        loss_rec_cell += args.gamma_b * F.mse_loss(cell_r[1], cell_dec[1])
 
         loss_cell_pairs = contrastive_loss(int(torch.sum(cell_flag)), args.tau_cell, cell_z[0][cell_flag, :],
                                            cell_z[1][cell_flag, :])
@@ -147,5 +148,6 @@ class Model(torch.nn.Module):
                 break
 
         self.loss_list = loss_list
+
 
 
